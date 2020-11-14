@@ -8,6 +8,8 @@ from utils import *
 class RFDNNet(Model):
     def __init__(self):
         super(RFDNNet, self).__init__()
+        self.feat = 64
+        self.filter = 64
 
     def SRB(self, X, filter):
         X1 = ReLU()(Conv2D(filter, kernel_size=(3,3), padding='same')(X))

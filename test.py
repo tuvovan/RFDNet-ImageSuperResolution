@@ -14,16 +14,19 @@ from tensorflow.keras import Model, Input
 
 
 def run(config, model):
-    lr = cv2.imread(config.test_path)
-    out = upscale_image(model, lr)
-    cv2.imwrite(os.path.join(config.test_path.replace('.png', '_sr.png')), np.array(out))
+    for name in os.listdir(config.test_path):
+        fullname = os.path.join(config.test_path, name)
+        lr = cv2.imread(fullname)
+        out, out_bilinear = upscale_image(model, lr)
+        cv2.imwrite(os.path.join(fullname.replace('.png', '_sr.png')), np.array(out))
+        cv2.imwrite(os.path.join(fullname.replace('.png', '_bilinear.png')), np.array(out_bilinear))
 
 if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
 
 	# Input Parameters
-    parser.add_argument('--test_path', type=str, default="test/0002x2.png")
+    parser.add_argument('--test_path', type=str, default="test/")
     parser.add_argument('--gpu', type=str, default='1')
     parser.add_argument('--weight_test_path', type=str, default= "weights/best.h5")
     parser.add_argument('--RSAfilter', type=int, default=64)

@@ -1,8 +1,8 @@
-# ANLHDR Imaging
-High Dynamic Range Image Synthesis via Attention Non-Local Network
-![teaser](teaser/HDRI.png)
+# RFDNet Super Resolution
+Residual Feature Distillation Network for Lightweight Image Super-Resolution
+![teaser](RFDNet.png)
 ## Content
-- [ANL-HDRI](#anl-hdri)
+- [ANL-HDRI](#rfdnet-super-resolution)
 - [Getting Started](#getting-tarted)
 - [Running](#running)
 - [References](#references)
@@ -15,7 +15,6 @@ High Dynamic Range Image Synthesis via Attention Non-Local Network
 ### Prerequisites
 
 - Tensorflow 2.2.0+
-- Tensorflow_addons
 - Python 3.6+
 - Keras 2.3.0
 - PIL
@@ -27,100 +26,61 @@ pip install -r requirements.txt
 
 ## Running
 ### Training 
-- Preprocess
-    - Download the [training data](https://cseweb.ucsd.edu/~viscomp/projects/SIG17HDR/PaperData/SIGGRAPH17_HDR_Trainingset.zip) and [testing data](https://cseweb.ucsd.edu/~viscomp/projects/SIG17HDR/PaperData/SIGGRAPH17_HDR_Testset.zip).
 
-    - Run this file to generate data. (Please remember to change path first)
-
-    ```
-    python src/create_dataset.py
-    ```
-
-- Train ANL-HDRI 
+- Train RFDNet 
     ```
     python main.py
     ```
 
-- Test ANL-HDRI
-    - Download weights [here](https://drive.google.com/file/d/1G94mGLbKSLcvzl9CRs5WY305meG13pWh/view?usp=sharing)
+- Test RFDNet
     ```
     python test.py
     ```
 ## Usage
-### Training
-```
-usage: main.py [-h] [--images_path IMAGES_PATH] [--test_path TEST_PATH]
-               [--lr LR] [--gpu GPU] [--num_epochs NUM_EPOCHS] 
-               [--train_batch_size TRAIN_BATCH_SIZE]
-               [--display_ep DISPLAY_EP] [--checkpoint_ep CHECKPOINT_EP]
-               [--checkpoints_folder CHECKPOINTS_FOLDER]
-               [--load_pretrain LOAD_PRETRAIN] [--pretrain_dir PRETRAIN_DIR]
-               [--filter FILTER] [--kernel KERNEL]
-               [--encoder_kernel ENCODER_KERNEL]
-               [--decoder_kernel DECODER_KERNEL]
-               [--triple_pass_filter TRIPLE_PASS_FILTER]
-```
-
-```
-optional arguments: -h, --help                show this help message and exit
-                    --images_path             training path
-                    --lr                      LR
-                    --gpu                     GPU
-                    --num_epochs              NUM of EPOCHS
-                    --train_batch_size        training batch size
-                    --display_ep              display result every "x" epoch
-                    --checkpoint_ep           save weights every "x" epoch
-                    --checkpoints_folder      folder to save weight
-                    --load_pretrain           load pretrained model
-                    --pretrain_dir            pretrained model folder
-                    --filter                  default filter
-                    --kernel                  default kernel
-                    --encoder_kernel          encoder filter size
-                    --decoder_kernel          decoder filter size
-                    --triple_pass_filter      number of filter in triple pass
-```
 
 ### Testing
 <!-- Download the weight [here](https://drive.google.com/file/d/1OjJYirwRa8cLGzzdRYRkjq_1FokyI80V/view?usp=sharing) and put it to the folder. -->
 ```
 usage: test.py [-h] [--test_path TEST_PATH] [--gpu GPU]
-                    [--weight_test_path WEIGHT_TEST_PATH] [--filter FILTER]
-                    [--kernel KERNEL] [--encoder_kernel ENCODER_KERNEL]
-                    [--decoder_kernel DECODER_KERNEL]
-                    [--triple_pass_filter TRIPLE_PASS_FILTER]
+               [--weight_test_path WEIGHT_TEST_PATH] [--filter FILTER]
+               [--feat FEAT] [--scale SCALE]
 ```
 ```
-optional arguments: -h, --help                    show this help message and exit
-                    --test_path                   test path
-                    --weight_test_path            weight test path
-                    --filter                      default filter
-                    --kernel                      default kernel
-                    --encoder_kernel              encoder filter size
-                    --decoder_kernel              decoder filter size
-                    --triple_pass_filter          number of filter in triple pass
+optional arguments:
+                    -h, --help            show this help message and exit
+                    --test_path TEST_PATH
+                    --gpu GPU
+                    --weight_test_path WEIGHT_TEST_PATH
+                    --filter FILTER
+                    --feat FEAT
+                    --scale SCALE
 ```
 
 #### Result
-![DEMO0](teaser/rs1.png) 
-![DEMO1](teaser/rs2.png) 
-![DEMO2](teaser/rs3.png) 
+| Input - Low Res | Bilinear | Output High Res |
+| --- | --- | --- |
+| ![]test/0001x2.png | ![]test/0001x2_bilinear.png | ![]test/0001x2_sr.png|
+| ![]test/0002x2.png | ![]test/0002x2_bilinear.png | ![]test/0002x2_sr.png|
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/tuvovan/ANL-HDRI/blob/master/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/tuvovan/RFDNet-ImageSuperResolution/blob/master/LICENSE) file for details
 
 ## References
-[1] Training and Testing dataset - [link](https://cseweb.ucsd.edu/~viscomp/projects/SIG17HDR/)
+[1] Training and Testing dataset - [link](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz/)
 
 ## Citation
 ```
-    @ARTICLE{8989959,  author={Tu V.V},   
-    title={High Dynamic Range Image Synthesis via Attention Non-Local Network},   
-    year={2020},  
-    url={github.com/tuvovan/ANL-HDRI},}
+@misc{liu2020residual,
+      title={Residual Feature Distillation Network for Lightweight Image Super-Resolution}, 
+      author={Jie Liu and Jie Tang and Gangshan Wu},
+      year={2020},
+      eprint={2009.11551},
+      archivePrefix={arXiv},
+      primaryClass={eess.IV}
+}
 ```
 ## Acknowledgments
-- My work is done on my sparse time so I should have some mistake or further possible improvement.
 - Any ideas on updating or misunderstanding, please send me an email: <vovantu.hust@gmail.com>
 - If you find this repo helpful, kindly give me a star.
 
