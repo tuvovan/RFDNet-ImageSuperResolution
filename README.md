@@ -2,7 +2,7 @@
 Residual Feature Distillation Network for Lightweight Image Super-Resolution
 ![teaser](RFDNet.png)
 ## Content
-- [ANL-HDRI](#rfdnet-super-resolution)
+- [RFDNet](#rfdnet-super-resolution)
 - [Getting Started](#getting-tarted)
 - [Running](#running)
 - [References](#references)
@@ -59,8 +59,8 @@ optional arguments:
 #### Result
 | Input - Low Res | Bilinear | Output High Res |
 | --- | --- | --- |
-| ![]test/0001x2.png | ![]test/0001x2_bilinear.png | ![]test/0001x2_sr.png|
-| ![]test/0002x2.png | ![]test/0002x2_bilinear.png | ![]test/0002x2_sr.png|
+| ![](test/0001x2.png) | ![](test/0001x2_bilinear.png) | ![](test/0001x2_sr.png)|
+| ![](test/0002x2.png) | ![](test/0002x2_bilinear.png) | ![](test/0002x2_sr.png)|
 
 ## License
 
