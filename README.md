@@ -1,6 +1,6 @@
 # RFDNet Super Resolution
 Residual Feature Distillation Network for Lightweight Image Super-Resolution
-![teaser](RFDNet.png)
+![teaser](test/RFDNet.png)
 ## Content
 - [RFDNet](#rfdnet-super-resolution)
 - [Getting Started](#getting-tarted)
