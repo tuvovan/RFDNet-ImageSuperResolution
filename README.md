@@ -67,7 +67,7 @@ optional arguments:
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/tuvovan/RFDNet-ImageSuperResolution/blob/master/LICENSE) file for details
 
 ## References
-[1] Training and Testing dataset - [link](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz/)
+[1] Training and Testing dataset - [link](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz)
 
 ## Citation
 ```
