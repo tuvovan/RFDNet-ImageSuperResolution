@@ -1,4 +1,5 @@
 import os
+import time
 import tensorflow as tf
 import numpy as np
 
@@ -70,7 +71,9 @@ def upscale_image(model, img):
     y = y.astype("float32") / 255.0
 
     input = np.expand_dims(y, axis=0)
+    t = time.time()
     out = model.predict(input)
+    print(time.time() - t)
 
     out_img_y = out[0]
     out_img_y *= 255.0
@@ -79,12 +82,13 @@ def upscale_image(model, img):
     out_img_y = out_img_y.clip(0, 255)
     out_img_y = out_img_y.reshape((np.shape(out_img_y)[0], np.shape(out_img_y)[1], 3))
     out_img = PIL.Image.fromarray(np.uint8(out_img_y))
-    # out_img_cb = cb.resize(out_img_y.size, PIL.Image.BICUBIC)
+    img_pil = PIL.Image.fromarray(np.uint8(img))
+    out_img_bilinear = img_pil.resize(out_img.size, PIL.Image.BICUBIC)
     # out_img_cr = cr.resize(out_img_y.size, PIL.Image.BICUBIC)
     # out_img = PIL.Image.merge("YCbCr", (out_img_y, out_img_cb, out_img_cr)).convert(
     #     "RGB"
     # )
-    return out_img
+    return out_img, out_img_bilinear
 
 class ESPCNCallback(keras.callbacks.Callback):
     def __init__(self):
