@@ -102,7 +102,7 @@ class ESPCNCallback(keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
         print("Mean PSNR for epoch: %.2f" % (np.mean(self.psnr)))
         if epoch % 10 == 0:
-            prediction = upscale_image(self.model, self.test_img)
+            prediction, _ = upscale_image(self.model, self.test_img)
             plot_results(prediction, "epoch-" + str(epoch), "prediction")
 
     def on_test_batch_end(self, batch, logs=None):
