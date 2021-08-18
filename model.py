@@ -43,7 +43,7 @@ class RFDNNet(Model):
         out_B3 = self.RFDB(out_B2)
         out_B4 = self.RFDB(out_B3)
 
-        concat = Concatenate(axis=-1)([out_B1,out_B3,out_B3,out_B4])
+        concat = Concatenate(axis=-1)([out_B1,out_B2,out_B3,out_B4])
 
         concat_1 = Conv2D(self.feat, kernel_size=(1,1), activation='relu')(concat)
 
