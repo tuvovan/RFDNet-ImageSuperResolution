@@ -88,7 +88,7 @@ model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
     period=1
 )
 
-callbacks = [ESPCNCallback(), early_stopping_callback, model_checkpoint_callback]
+callbacks = [ESPCNCallback(test_img_paths), early_stopping_callback, model_checkpoint_callback]
 loss_fn = keras.losses.MeanSquaredError()
 optimizer = keras.optimizers.Adam(learning_rate=0.001)
 
