@@ -91,7 +91,7 @@ def upscale_image(model, img):
     return out_img, out_img_bilinear
 
 class ESPCNCallback(keras.callbacks.Callback):
-    def __init__(self):
+    def __init__(self, test_img_paths):
         super(ESPCNCallback, self).__init__()
         self.test_img = get_lowres_image(load_img(test_img_paths[0]), upscale_factor)
 
